@@ -1,1 +1,9 @@
-﻿Console.WriteLine("Hello, World!");
+﻿namespace SeleniumCourse;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Hello, World!");
+    }
+}
