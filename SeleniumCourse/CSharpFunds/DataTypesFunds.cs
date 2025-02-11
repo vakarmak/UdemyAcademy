@@ -1,7 +1,25 @@
 namespace SeleniumCourse.CSharpFunds;
 
-class Program
+class Program : Inheritance
 {
+    String name;
+    
+    // method default constructor
+    public Program(String name)
+    {
+        this.name = name;
+    }
+
+    public void GetName()
+    {
+        Console.WriteLine("My name is " + this.name);
+    }
+    
+    public void GetData()
+    {
+        Console.WriteLine("I'm inside the method");
+    }
+    
     private static void Main()
     {
         Console.WriteLine("Data Types Fundamentals");
@@ -29,7 +47,10 @@ class Program
         Console.WriteLine("------------------------");
         
         // Call a method from another class
-        Methods obj = new Methods();
-        obj.getData();
+        Program p = new Program("Selenium");
+        p.GetData();
+        // Call a method from the inherited class
+        p.SetData();
+        p.GetName();
     }
 }
