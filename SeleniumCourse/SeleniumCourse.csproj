@@ -8,14 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="NUnit" Version="4.3.2" />
-      <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-      <PackageReference Include="Selenium.Support" Version="4.28.0" />
-      <PackageReference Include="Selenium.WebDriver" Version="4.28.0" />
-      <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="132.0.6834.15900" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Remove="CSharpFunds\Arrays.cs" />
       <None Include="CSharpFunds\Arrays.cs" />
     </ItemGroup>
