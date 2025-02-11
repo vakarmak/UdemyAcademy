@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <Compile Remove="CSharpFunds\Arrays.cs" />
-      <None Include="CSharpFunds\Arrays.cs" />
+      <None Include="CSharp\Arrays.cs" />
     </ItemGroup>
 
 </Project>

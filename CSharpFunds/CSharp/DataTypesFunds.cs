@@ -1,4 +1,4 @@
-namespace SeleniumCourse.CSharpFunds;
+namespace CSharpFunds.CSharpFunds;
 
 class Program : Inheritance
 {
