@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpFunds", "CSharpFunds\CSharpFunds.csproj", "{15B5476A-8062-463D-AC46-65DCF40B3A49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumLearnings", "SeleniumLearnings\SeleniumLearnings.csproj", "{5D3A66E5-0D96-44BF-A1DB-2F5D18020C62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{15B5476A-8062-463D-AC46-65DCF40B3A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15B5476A-8062-463D-AC46-65DCF40B3A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15B5476A-8062-463D-AC46-65DCF40B3A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D3A66E5-0D96-44BF-A1DB-2F5D18020C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3A66E5-0D96-44BF-A1DB-2F5D18020C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3A66E5-0D96-44BF-A1DB-2F5D18020C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3A66E5-0D96-44BF-A1DB-2F5D18020C62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
