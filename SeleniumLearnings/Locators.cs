@@ -32,7 +32,7 @@ public class Locators
         genderCheckbox.Click();
         
         // CSS Selector
-        // _driver.FindElement(By.CssSelector("input[value='Login']")).Click();
+        // _driver.FindElement(By.CssSelector("button[type='submit']")).Click();
         
         // XPath
         var submitButton = _driver.FindElement(By.XPath("//button[@type='submit']"));
@@ -42,6 +42,17 @@ public class Locators
 
         var modalWindowText = _driver.FindElement(By.Id("example-modal-sizes-title-lg")).Text;
         TestContext.Progress.WriteLine(modalWindowText);
+        
+        ((IJavaScriptExecutor)_driver).ExecuteScript("window.open('https://demoqa.com/broken');");
+        
+        // Anchor element locator
+        var link = _driver.FindElement(By.XPath("//a[@href='https://demoqa.com']")); // //div[@class='row']/div[2]/div[2]/a[1] or (//div[@class='row']//a)[1]
+        const string expectedUrl = "https://demoqa.com/";
+        var hrefAttribute = link.GetAttribute("href");
+        
+        Assert.That(hrefAttribute, Is.EqualTo(expectedUrl));
+        
+        Thread.Sleep(3000);
     }
     
     [TearDown]
