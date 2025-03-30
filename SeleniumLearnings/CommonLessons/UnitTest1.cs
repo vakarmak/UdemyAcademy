@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace SeleniumLearnings
+namespace SeleniumLearnings.CommonLessons
 {
     public class Tests
     {

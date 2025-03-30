@@ -4,7 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Extensions;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace SeleniumLearnings;
+namespace SeleniumLearnings.CommonLessons;
 
 public class Locators
 {
@@ -51,8 +51,6 @@ public class Locators
         var hrefAttribute = link.GetAttribute("href");
         
         Assert.That(hrefAttribute, Is.EqualTo(expectedUrl));
-        
-        Thread.Sleep(3000);
     }
     
     [TearDown]

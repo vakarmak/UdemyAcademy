@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace SeleniumLearnings;
+namespace SeleniumLearnings.CommonLessons;
 
 public class SeleniumFirst
 {
