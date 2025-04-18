@@ -10,9 +10,9 @@ namespace SeleniumLearnings.LocatorsExploring;
 public class DropdownLocators : UiTestFixture
 {
     [Test]
-    [TestCase("https://demoqa.com/select-menu")]
-    public void Dropdown(string url)
+    public void DropdownTest()
     {
+        const string url = "https://demoqa.com/select-menu";
         Driver.Url = url;
         
         // Select element is used to interact with dropdowns
