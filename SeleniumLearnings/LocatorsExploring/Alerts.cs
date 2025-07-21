@@ -2,6 +2,7 @@
 using FluentAssertions.Primitives;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumLearnings.Base;
 
 namespace SeleniumLearnings.LocatorsExploring;
@@ -30,5 +31,29 @@ public class Alerts : UiTestFixture
         alertPopup.Accept();
         
         StringAssert.Contains(name, alertText); // проверка, что имя присутствует в тексте алерта
+    }
+    
+    [Test]
+    public void AutoSuggestiveDropDown()
+    {
+        const string url = "https://rahulshettyacademy.com/AutomationPractice/";
+        Driver.Url = url;
+        
+        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
+        var countryNameInputField = Driver.FindElement(By.Id("autocomplete"));
+        
+        countryNameInputField.SendKeys("uk");
+        wait.Until(d => d.FindElement(By.CssSelector(".ui-menu-item div")).Displayed);
+
+        IList<IWebElement> options = Driver.FindElements(By.CssSelector(".ui-menu-item div"));
+        options.Should().NotBeEmpty("There should be at least one option displayed after typing 'uk'.");
+
+        foreach (var option in options)
+        {
+            if (option.Text.Equals("Ukraine"))
+            {
+                option.Click();
+            }
+        }
     }
 }
