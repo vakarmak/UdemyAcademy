@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace SeleniumLearnings.Base;
@@ -8,6 +9,7 @@ namespace SeleniumLearnings.Base;
 public class UiTestFixture
 {
     protected IWebDriver Driver;
+    protected WebDriverWait Wait;
 
     [SetUp]
     public void Setup()
@@ -15,6 +17,13 @@ public class UiTestFixture
         new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
         Driver = new ChromeDriver();
         Driver.Manage().Window.Maximize();
+        
+        Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
+    }
+    
+    protected void NavigateTo(string url)
+    {
+        Driver.Navigate().GoToUrl(url);
     }
     
     [TearDown]
