@@ -12,6 +12,7 @@ public class UiTestFixture
     protected IWebDriver Driver;
     protected WebDriverWait Wait;
     protected Actions? Actions;
+    protected IJavaScriptExecutor Js;
 
 
     [SetUp]
@@ -23,6 +24,7 @@ public class UiTestFixture
         
         Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
         Actions = new Actions(Driver);
+        Js = (IJavaScriptExecutor)Driver;
     }
     
     protected void NavigateTo(string url)
