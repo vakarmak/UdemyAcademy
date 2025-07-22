@@ -15,9 +15,19 @@ public class FrameExploring : UiTestFixture
         
         Js.ExecuteScript("arguments[0].scrollIntoView(true);", frameElement);
         
-        var mainFrame = Driver.SwitchTo().Frame("courses-iframe");
+        var mainFrame = Driver.SwitchTo().Frame("courses-iframe"); // Switch to the iframe
         var allAccessPlanButton = mainFrame.FindElement(By.XPath("//a[text()='All Access plan']"));
         
         allAccessPlanButton.Click();
+        
+        Wait.Until(d => Driver.FindElement(By.CssSelector("h1")).Displayed);
+        
+        var accessPlanTitle = mainFrame.FindElement(By.CssSelector("h1")).Text;
+        TestContext.Progress.WriteLine(accessPlanTitle);
+        
+        var frameParent = Driver.SwitchTo().DefaultContent(); // Switch back to the main content
+        
+        var titleElement = frameElement.FindElement(By.XPath("//h1[text()='Practice Page']")).Text;
+        TestContext.Progress.WriteLine(titleElement);
     }
 }
