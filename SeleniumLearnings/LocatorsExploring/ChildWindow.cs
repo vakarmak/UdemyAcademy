@@ -18,7 +18,7 @@ public class ChildWindow : UiTestFixture
         var tabsHandler = Driver.WindowHandles;
         tabsHandler.Should().HaveCount(2, "There should be two tabs opened after clicking the 'newTabButton' button.");
         
-        var childTab = tabsHandler[1];
+        var childTab = tabsHandler[1]; // The second tab is the child tab, as the first one is the original tab.
         Driver.SwitchTo().Window(childTab);
         
         var childTabTitle = Driver.FindElement(By.XPath("//img[@alt='Logo']"));
