@@ -20,14 +20,15 @@ public class BaseTest
     [SetUp]
     public void Setup()
     {
-        //new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-        //Driver = new ChromeDriver();
-
         var browserName = ConfigurationManager.AppSettings["browser"];
+        if (string.IsNullOrWhiteSpace(browserName))
+        {
+            throw new InvalidOperationException("Browser name is not configured in AppSettings.");
+        }
         InitBrowser(browserName);
 
         Driver.Manage().Window.Maximize();
-        
+
         Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
         Actions = new Actions(Driver);
         Js = (IJavaScriptExecutor)Driver;
