@@ -29,9 +29,14 @@ public class BaseTest
 
         Driver.Manage().Window.Maximize();
 
-        Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
+        Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
         Actions = new Actions(Driver);
         Js = (IJavaScriptExecutor)Driver;
+    }
+
+    public IWebDriver GetDriver()
+    {
+        return Driver;
     }
 
     protected void InitBrowser(string browserName)

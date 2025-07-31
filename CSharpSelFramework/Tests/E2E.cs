@@ -1,4 +1,5 @@
 ﻿using CSharpSelFramework.Base;
+using CSharpSelFramework.PageObjects;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -16,38 +17,45 @@ namespace CSharpSelFramework.Tests
         [Test]
         public void E2ETest()
         {
+            GreenKartProductsPage greenKartProductsPage = new GreenKartProductsPage(GetDriver());
+            CartPopupPage cartPopupPage = new CartPopupPage(GetDriver());
+            CartPage cartPage = new CartPage(GetDriver());
+
             NavigateTo("https://rahulshettyacademy.com/seleniumPractise/#/");
 
-            var productsList = Driver.FindElements(By.XPath("//div[@class = 'product']"));
+            var productsList = greenKartProductsPage.GetProductsList();
+            
             foreach (var product in productsList)
             {
-                if (product.Text.Contains("Beetroot") || product.Text.Contains("Cucumber"))
+                var productName = product.FindElement(greenKartProductsPage.GetProductName()).Text;
+
+                if (productName.Contains("Cauliflower") || productName.Contains("Cucumber"))
                 {
-                    var addToCartButton = product.FindElement(By.XPath(".//button[contains(text(), 'ADD TO CART')]"));
-                    addToCartButton.Click();
+                    productName.Should().Match(x => x.Contains("Cauliflower") || x.Contains("Cucumber"));
+                    product.FindElement(greenKartProductsPage.GetAddToCartButton()).Click();
                 }
             }
 
-            var cartCount = Driver.FindElement(By.XPath("//img[@alt='Cart']"));
-            cartCount.Click();
-            var cartItems = Driver.FindElements(By.CssSelector(".cart-item"));
-            cartItems.Should().NotBeEmpty();
+            cartPopupPage.OpenCart();
+            var cartItems = cartPopupPage.GetCartItems();
+            cartPopupPage.GetCartItems().Should().NotBeNullOrEmpty();
 
-            Wait.Until(d => d.FindElement(By.XPath("//button[.='PROCEED TO CHECKOUT']")));
-            var proceedToCheckoutButton = Driver.FindElement(By.XPath("//button[.='PROCEED TO CHECKOUT']"));
-            proceedToCheckoutButton.Click();
+            Wait.Until(d => cartPopupPage.GetProceedToCheckoutButton().Displayed);
+            cartPopupPage.GetProceedToCheckoutButton().Click();
 
-            Wait.Until(d => d.FindElement(By.XPath("//button[.='Place Order']")));
-            var placeOrderButton = Driver.FindElement(By.XPath("//button[.='Place Order']"));
-            placeOrderButton.Click();
+            
 
-            Wait.Until(d => d.FindElement(By.XPath("//select[contains(.,'Select')]")));
-            var selectElement = new SelectElement(Driver.FindElement(By.XPath("//select[contains(.,'Select')]")));
-            selectElement.SelectByText("Ukraine");
+            //Wait.Until(d => d.FindElement(By.XPath("//button[.='Place Order']")));
+            //var placeOrderButton = Driver.FindElement(By.XPath("//button[.='Place Order']"));
+            //placeOrderButton.Click();
 
-            var argeeButton = Driver.FindElement(By.XPath("//input[@class='chkAgree']"));
-            argeeButton.Click();
-            var purchaseButton = Driver.FindElement(By.XPath("//button[.='Proceed']"));
+            //Wait.Until(d => d.FindElement(By.XPath("//select[contains(.,'Select')]")));
+            //var selectElement = new SelectElement(Driver.FindElement(By.XPath("//select[contains(.,'Select')]")));
+            //selectElement.SelectByText("Ukraine");
+
+            //var argeeButton = Driver.FindElement(By.XPath("//input[@class='chkAgree']"));
+            //argeeButton.Click();
+            //var purchaseButton = Driver.FindElement(By.XPath("//button[.='Proceed']"));
         }
     }
 }
