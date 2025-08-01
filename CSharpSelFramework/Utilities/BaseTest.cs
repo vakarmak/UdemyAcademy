@@ -25,12 +25,13 @@ public class BaseTest
             .SetBasePath(Directory.GetCurrentDirectory()) // важно: откуда читать файл
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .Build();
-        
+
         var browserName = _configuration["browser"];
         if (string.IsNullOrWhiteSpace(browserName))
         {
-            throw new InvalidOperationException("Browser name is not configured in AppSettings.");
+            throw new InvalidOperationException("Browser name is not configured in appSettings.");
         }
+
         InitBrowser(browserName);
 
         Driver.Manage().Window.Maximize();
@@ -40,12 +41,12 @@ public class BaseTest
         Js = (IJavaScriptExecutor)Driver;
     }
 
-    public IWebDriver GetDriver()
+    protected IWebDriver GetDriver()
     {
         return Driver;
     }
 
-    protected void InitBrowser(string browserName)
+    private void InitBrowser(string browserName)
     {
         switch (browserName)
         {
@@ -63,12 +64,12 @@ public class BaseTest
                 break;
         }
     }
-    
+
     protected void NavigateTo(string url)
     {
         Driver.Navigate().GoToUrl(url);
     }
-    
+
     [TearDown]
     public void TearDown()
     {
