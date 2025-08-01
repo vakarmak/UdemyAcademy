@@ -5,29 +5,29 @@ namespace CSharpSelFramework.PageObjects
 {
     internal class CartPage
     {
-        private readonly IWebDriver Driver;
+        private readonly IWebDriver _driver;
 
-        public CartPage(IWebDriver Driver)
+        public CartPage(IWebDriver driver)
         {
-            this.Driver = Driver;
-            PageFactory.InitElements(Driver, this);
+            this._driver = driver;
+            PageFactory.InitElements(driver, this);
         }
 
         // Page elements
         [FindsBy(How = How.XPath, Using = "//tbody")]
-        private readonly IList<IWebElement> cartItemsTable;
+        private readonly IList<IWebElement> _cartItemsTable = null!;
 
-        By cartProduct = By.XPath("//tr");
+        private readonly By _cartProduct = By.XPath("//tr");
 
         // Methods to interact with the page elements
         public IList<IWebElement> GetCartItems()
         {
-            return cartItemsTable;
+            return _cartItemsTable;
         }
 
         public By GetCartProduct()
         {
-            return cartProduct;
+            return _cartProduct;
         }
     }
 }

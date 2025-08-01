@@ -5,38 +5,38 @@ namespace CSharpSelFramework.PageObjects
 {
     internal class CartPopupPage
     {
-        private readonly IWebDriver Driver;
+        private readonly IWebDriver _driver;
 
-        public CartPopupPage(IWebDriver Driver)
+        public CartPopupPage(IWebDriver driver)
         {
-            this.Driver = Driver;
-            PageFactory.InitElements(Driver, this);
+            this._driver = driver;
+            PageFactory.InitElements(driver, this);
         }
 
         // Page elements 
         [FindsBy(How = How.XPath, Using = "//img[@alt='Cart']")]
-        private readonly IWebElement openCart;
+        private readonly IWebElement _openCart = null!;
 
         [FindsBy(How = How.CssSelector, Using = ".cart-items")]
-        private readonly IList<IWebElement> cartItems;
+        private readonly IList<IWebElement> _cartItems = null!;
 
         [FindsBy(How = How.XPath, Using = "//button[.='PROCEED TO CHECKOUT']")]
-        private readonly IWebElement proceedToCheckoutButton;
+        private readonly IWebElement _proceedToCheckoutButton = null!;
 
         // Methods to interact with the page elements
         public void OpenCart()
         {
-            openCart.Click();
+            _openCart.Click();
         }
 
         public IList<IWebElement> GetCartItems()
         {
-            return cartItems;
+            return _cartItems;
         }
 
         public IWebElement GetProceedToCheckoutButton()
         {
-            return proceedToCheckoutButton;
+            return _proceedToCheckoutButton;
         }
     }
 }

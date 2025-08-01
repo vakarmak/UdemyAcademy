@@ -10,9 +10,9 @@ namespace CSharpSelFramework.Tests
         [Test]
         public void E2ETest()
         {
-            GreenKartProductsPage greenKartProductsPage = new GreenKartProductsPage(GetDriver());
-            CartPopupPage cartPopupPage = new CartPopupPage(GetDriver());
-            CartPage cartPage = new CartPage(GetDriver());
+            var greenKartProductsPage = new GreenKartProductsPage(GetDriver());
+            var cartPopupPage = new CartPopupPage(GetDriver());
+            var cartPage = new CartPage(GetDriver());
 
             NavigateTo("https://rahulshettyacademy.com/seleniumPractise/#/");
 
