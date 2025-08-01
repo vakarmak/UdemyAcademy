@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Primitives;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumLearnings.Base;
