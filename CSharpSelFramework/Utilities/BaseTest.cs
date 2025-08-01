@@ -11,7 +11,7 @@ namespace CSharpSelFramework.Utilities;
 
 public class BaseTest
 {
-    protected IWebDriver Driver = null!;
+    private IWebDriver _driver = null!;
     protected WebDriverWait Wait = null!;
     protected Actions? Actions;
     protected IJavaScriptExecutor Js = null!;
@@ -33,16 +33,16 @@ public class BaseTest
 
         InitBrowser(browserName);
 
-        Driver.Manage().Window.Maximize();
+        _driver.Manage().Window.Maximize();
 
-        Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-        Actions = new Actions(Driver);
-        Js = (IJavaScriptExecutor)Driver;
+        Wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+        Actions = new Actions(_driver);
+        Js = (IJavaScriptExecutor)_driver;
     }
 
     protected IWebDriver GetDriver()
     {
-        return Driver;
+        return _driver;
     }
 
     private void InitBrowser(string browserName)
@@ -51,23 +51,23 @@ public class BaseTest
         {
             case "Chrome":
                 new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                Driver = new ChromeDriver();
+                _driver = new ChromeDriver();
                 break;
             case "Edge":
                 new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
-                Driver = new EdgeDriver();
+                _driver = new EdgeDriver();
                 break;
         }
     }
 
     protected void NavigateTo(string url)
     {
-        Driver.Navigate().GoToUrl(url);
+        _driver.Navigate().GoToUrl(url);
     }
 
     [TearDown]
     public void TearDown()
     {
-        Driver.Quit();
+        _driver.Quit();
     }
 }
