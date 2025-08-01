@@ -1,14 +1,14 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.Extensions.Configuration;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using System.Configuration;
 using WebDriverManager.DriverConfigs.Impl;
 
-namespace CSharpSelFramework.Base;
+namespace CSharpSelFramework.Utilities;
 
 public class BaseTest
 {
@@ -16,11 +16,17 @@ public class BaseTest
     protected WebDriverWait Wait = null!;
     protected Actions? Actions;
     protected IJavaScriptExecutor Js = null!;
+    private IConfiguration _configuration = null!;
 
     [SetUp]
     public void Setup()
     {
-        var browserName = ConfigurationManager.AppSettings["browser"];
+        _configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory()) // важно: откуда читать файл
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .Build();
+        
+        var browserName = _configuration["browser"];
         if (string.IsNullOrWhiteSpace(browserName))
         {
             throw new InvalidOperationException("Browser name is not configured in AppSettings.");

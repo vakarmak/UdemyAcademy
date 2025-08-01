@@ -1,5 +1,4 @@
-﻿using CSharpSelFramework.Base;
-using CSharpSelFramework.PageObjects;
+﻿using CSharpSelFramework.PageObjects;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpSelFramework.Utilities;
 
 namespace CSharpSelFramework.Tests
 {
