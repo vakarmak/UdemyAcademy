@@ -54,10 +54,6 @@ public class BaseTest
                 new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                 Driver = new ChromeDriver();
                 break;
-            case "Firefox":
-                new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
-                Driver = new FirefoxDriver();
-                break;
             case "Edge":
                 new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
                 Driver = new EdgeDriver();
