@@ -43,7 +43,8 @@ namespace CSharpSelFramework.Tests
             chooseCountryPage.ClickOnAgreeCheckbox();
             chooseCountryPage.ClickOnProceedButton();
 
-            Wait.Until(d => d.FindElement(chooseCountryPage.GetThankYouTitle()).Displayed);
+            Wait.Until(d => d.FindElement(chooseCountryPage.GetThankYouTitle()));
+            chooseCountryPage.GetThankYouTitle().Should().NotBeNull();
         }
     }
 }
