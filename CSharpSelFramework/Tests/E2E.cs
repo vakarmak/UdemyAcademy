@@ -43,6 +43,8 @@ namespace CSharpSelFramework.Tests
             selectCountry.SelectByText("Ukraine");
             chooseCountryPage.ClickOnAgreeCheckbox();
             chooseCountryPage.ClickOnProceedButton();
+
+            Wait.Until(d => d.FindElement(chooseCountryPage.GetThankYouTitle()).Displayed);
         }
     }
 }
