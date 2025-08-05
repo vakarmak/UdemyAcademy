@@ -9,25 +9,23 @@ namespace CSharpSelFramework.PageObjects
 
         public CartPage(IWebDriver driver)
         {
-            this._driver = driver;
+            _driver = driver;
             PageFactory.InitElements(driver, this);
         }
 
         // Page elements
-        [FindsBy(How = How.XPath, Using = "//tbody")]
-        private readonly IList<IWebElement> _cartItemsTable = null!;
 
-        private readonly By _cartProduct = By.XPath("//tr");
-
+        private readonly By _placeOrderButton = By.XPath("//button[contains(text(),'Place Order')]");
+        
         // Methods to interact with the page elements
-        public IList<IWebElement> GetCartItems()
-        {
-            return _cartItemsTable;
-        }
 
-        public By GetCartProduct()
+        public By GetPlaceOrderButton()
         {
-            return _cartProduct;
+            return _placeOrderButton;
+        }
+        public void ClickOnPlaceOrderButton()
+        {
+            _driver.FindElement(_placeOrderButton).Click();
         }
     }
 }

@@ -9,34 +9,25 @@ namespace CSharpSelFramework.PageObjects
 
         public CartPopupPage(IWebDriver driver)
         {
-            this._driver = driver;
+            _driver = driver;
             PageFactory.InitElements(driver, this);
         }
 
         // Page elements 
-        [FindsBy(How = How.XPath, Using = "//img[@alt='Cart']")]
-        private readonly IWebElement _openCart = null!;
 
-        [FindsBy(How = How.CssSelector, Using = ".cart-items")]
-        private readonly IList<IWebElement> _cartItems = null!;
-
-        [FindsBy(How = How.XPath, Using = "//button[.='PROCEED TO CHECKOUT']")]
-        private readonly IWebElement _proceedToCheckoutButton = null!;
+        private readonly By _cartPopupButton = By.XPath("//img[@alt='Cart']");
+        private readonly By _proceedButton = By.XPath("//button[contains(text(),'PROCEED TO CHECKOUT')]");
 
         // Methods to interact with the page elements
-        public void OpenCart()
+        
+        public void ClickOnCartButton()
         {
-            _openCart.Click();
+            _driver.FindElement(_cartPopupButton).Click();
         }
 
-        public IList<IWebElement> GetCartItems()
+        public void ClickOnProceedButton()
         {
-            return _cartItems;
-        }
-
-        public IWebElement GetProceedToCheckoutButton()
-        {
-            return _proceedToCheckoutButton;
+            _driver.FindElement(_proceedButton).Click();
         }
     }
 }

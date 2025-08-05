@@ -9,7 +9,7 @@ namespace CSharpSelFramework.PageObjects
 
         public GreenKartProductsPage(IWebDriver driver)
         {
-            this._driver = driver;
+            _driver = driver;
             PageFactory.InitElements(driver, this);
         }
 
