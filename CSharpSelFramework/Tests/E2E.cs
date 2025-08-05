@@ -27,7 +27,6 @@ namespace CSharpSelFramework.Tests
 
                 if (productName.Contains("Cauliflower") || productName.Contains("Cucumber"))
                 {
-                    productName.Should().Match(x => x.Contains("Cauliflower") || x.Contains("Cucumber"));
                     product.FindElement(greenKartProductsPage.GetAddToCartButton()).Click();
                 }
             }
