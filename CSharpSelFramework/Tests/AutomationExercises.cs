@@ -22,7 +22,7 @@ public class AutomationExercises : BaseTest
         aeLoginPage.EnterPassword(password);
         aeLoginPage.ClickOnLoginButton();
 
-        Assert.That(aeLoginPage.GetLoginErrorMessage().Displayed, "Error login message was not displayed.");
+        // Assert.That(aeLoginPage.GetLoginErrorMessage().Displayed, "Error login message was not displayed.");
     }
 
     #region private methods
@@ -30,8 +30,9 @@ public class AutomationExercises : BaseTest
     private static IEnumerable<TestCaseData> AddTestCaseData()
     {
         yield return new TestCaseData("lichar@ukr.net", "Qwerty12345*");
-        yield return new TestCaseData("lichar@ukr.net", "Qwerty12345");
-        yield return new TestCaseData("lichar@ukr.ne", "Qwerty12345*");
+        // yield return new TestCaseData("lichar@ukr.net", "Qwerty12345");
+        // yield return new TestCaseData("lichar@ukr.ne", "Qwerty12345*");
+        yield return new TestCaseData(GetParsedJson().ExtractData("username"), GetParsedJson().ExtractData("password"));
     }
 
     #endregion

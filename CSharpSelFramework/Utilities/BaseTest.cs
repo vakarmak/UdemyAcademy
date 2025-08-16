@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -64,6 +63,11 @@ public class BaseTest
     protected void NavigateTo(string url)
     {
         _driver.Navigate().GoToUrl(url);
+    }
+
+    protected static JsonReader GetParsedJson()
+    {
+        return new JsonReader();
     }
 
     [TearDown]

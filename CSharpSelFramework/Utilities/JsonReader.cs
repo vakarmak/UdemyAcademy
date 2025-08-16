@@ -7,13 +7,13 @@ using Newtonsoft.Json.Linq;
 
 namespace CSharpSelFramework.Utilities
 {
-    internal class JsonReader
+    public class JsonReader
     {
-        public void ExtractData()
+        public string ExtractData(String tokenName)
         {
-            var jsonString = File.ReadAllText("testData.json");
+            var jsonString = File.ReadAllText("TestData/testData.json");
             var jsonObject = JToken.Parse(jsonString);
-            Console.WriteLine(jsonObject.SelectToken("username").Value<string>());
+            return jsonObject.SelectToken(tokenName).Value<string>();
         }
     }
         
