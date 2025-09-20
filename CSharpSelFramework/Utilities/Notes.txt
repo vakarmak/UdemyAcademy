@@ -1,0 +1,21 @@
+﻿1. To run all test in a specific project through command line, use the following command:
+
+dotnet test <file-name.csproj>
+But before that, make sure you are in correct directory where the .csproj file is located. You can navigate to the directory using the cd command.
+
+2. To run tests with specific category, use the following command:
+dotnet test --filter TestCategory=<category-name>
+Make sure test are properly categorized using attributes in your test code.
+
+3. To run test through terminal in a specific browser, you can use following command:
+dotnet test <file-name.csproj> --filter TestCategory=<category-name> --% --TestRunParameters.Parameter\(name=\"<param-name>\",\ value=\"<value-name>\"\)
+Make sure you properly configure your code especially in BaseTest.cs to read the browser parameter and initialize the corresponding WebDriver instance.
+Example:
+String browserName;
+
+browserName = TestContext.Parameters["browserName"];
+if (browserName == null)
+{
+	browserName = "chrome"; // default browser or your configuration
+}
+InitBrowser(browserName);

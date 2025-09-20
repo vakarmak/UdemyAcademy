@@ -7,12 +7,14 @@ using SeleniumExtras.WaitHelpers;
 
 namespace CSharpSelFramework.Tests;
 
+// [Parallelizable(ParallelScope.Children)] // Run tests in parallel in class
+[Parallelizable(ParallelScope.Self)] // Run all test not only inside the class in parallel
 public class AutomationExercises : BaseTest
 {
     [Test]
     // [TestCase("lichar@ukr.net", "Qwerty12345*")]
     [TestCaseSource(nameof(AddTestCaseData))]
-    [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.All)] // Run data sets in parallel but sequentially for each test
     public void E2ETest(string username, string password)
     {
         var aeHomePage = new AeHomePage(GetDriver());
@@ -25,7 +27,7 @@ public class AutomationExercises : BaseTest
         aeLoginPage.EnterPassword(password);
         aeLoginPage.ClickOnLoginButton();
 
-        // Assert.That(aeLoginPage.GetLoginErrorMessage().Displayed, "Error login message was not displayed.");
+        Assert.That(aeHomePage.GetLogoutButton().Displayed, "User is not logged in.");
     }
 
     [Test]
@@ -71,9 +73,10 @@ public class AutomationExercises : BaseTest
     private static IEnumerable<TestCaseData> AddTestCaseData()
     {
         yield return new TestCaseData("lichar@ukr.net", "Qwerty12345*");
-        yield return new TestCaseData("lichar@ukr.net", "Qwerty12345");
-        // yield return new TestCaseData("lichar@ukr.ne", "Qwerty12345*");
-        yield return new TestCaseData(GetParsedJson().ExtractData("username"), GetParsedJson().ExtractData("password"));
+        // yield return new TestCaseData("lichar@ukr.net", "Qwerty12345");
+        yield return new TestCaseData("lichar@ukr.ne", "Qwerty12345*");
+        yield return new TestCaseData(GetParsedJson().ExtractData("username"),
+            GetParsedJson().ExtractData("password")); // does not show in the test runner
     }
     #endregion
 }

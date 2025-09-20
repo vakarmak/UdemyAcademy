@@ -7,9 +7,11 @@ using SeleniumExtras.WaitHelpers;
 
 namespace CSharpSelFramework.Tests
 {
+    [Parallelizable(ParallelScope.Self)] // Run all test not only inside the class in parallel
     internal class E2E : BaseTest
     {
         [Test]
+        [Category("Smoke")]
         public void E2ETest()
         {
             var greenKartProductsPage = new GreenKartProductsPage(GetDriver());
