@@ -11,7 +11,8 @@ namespace CSharpSelFramework.Utilities;
 
 public class BaseTest
 {
-    private IWebDriver _driver = null!;
+    // private IWebDriver _driver = null!;
+    public ThreadLocal<IWebDriver> _driver = new ThreadLocal<IWebDriver>();
     protected WebDriverWait Wait = null!;
     protected Actions? Actions;
     protected IJavaScriptExecutor Js = null!;
@@ -33,16 +34,16 @@ public class BaseTest
 
         InitBrowser(browserName);
 
-        _driver.Manage().Window.Maximize();
+        _driver.Value.Manage().Window.Maximize();
 
-        Wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-        Actions = new Actions(_driver);
-        Js = (IJavaScriptExecutor)_driver;
+        Wait = new WebDriverWait(_driver.Value, TimeSpan.FromSeconds(5));
+        Actions = new Actions(_driver.Value);
+        Js = (IJavaScriptExecutor)_driver.Value;
     }
 
     protected IWebDriver GetDriver()
     {
-        return _driver;
+        return _driver.Value;
     }
 
     private void InitBrowser(string browserName)
@@ -51,18 +52,18 @@ public class BaseTest
         {
             case "Chrome":
                 new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                _driver = new ChromeDriver();
+                _driver.Value = new ChromeDriver();
                 break;
             case "Edge":
                 new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
-                _driver = new EdgeDriver();
+                _driver.Value = new EdgeDriver();
                 break;
         }
     }
 
     protected void NavigateTo(string url)
     {
-        _driver.Navigate().GoToUrl(url);
+        _driver.Value.Navigate().GoToUrl(url);
     }
 
     protected static JsonReader GetParsedJson()
@@ -73,6 +74,6 @@ public class BaseTest
     [TearDown]
     public void TearDown()
     {
-        _driver.Quit();
+        _driver.Value.Quit();
     }
 }
