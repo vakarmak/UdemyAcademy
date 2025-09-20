@@ -1,6 +1,5 @@
 ﻿using CSharpSelFramework.PageObjects;
 using CSharpSelFramework.Utilities;
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace CSharpSelFramework.Tests;
@@ -34,6 +33,5 @@ public class AutomationExercises : BaseTest
         // yield return new TestCaseData("lichar@ukr.ne", "Qwerty12345*");
         yield return new TestCaseData(GetParsedJson().ExtractData("username"), GetParsedJson().ExtractData("password"));
     }
-
     #endregion
 }

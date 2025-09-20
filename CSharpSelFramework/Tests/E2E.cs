@@ -2,8 +2,8 @@
 using CSharpSelFramework.Utilities;
 using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace CSharpSelFramework.Tests
 {
@@ -34,10 +34,10 @@ namespace CSharpSelFramework.Tests
             cartPopupPage.ClickOnCartButton();
             cartPopupPage.ClickOnProceedButton();
             
-            Wait.Until(d => d.FindElement(cartPage.GetPlaceOrderButton()));
+            Wait.Until(ExpectedConditions.ElementToBeClickable(cartPage.GetPlaceOrderButton()));
             cartPage.ClickOnPlaceOrderButton();
 
-            Wait.Until(d => d.FindElement(chooseCountryPage.GetCountrySelect()));
+            Wait.Until(ExpectedConditions.ElementToBeClickable(chooseCountryPage.GetCountrySelect()));
             var selectCountry = new SelectElement(GetDriver().FindElement(chooseCountryPage.GetCountrySelect()));
             selectCountry.SelectByText("Ukraine");
             chooseCountryPage.ClickOnAgreeCheckbox();
