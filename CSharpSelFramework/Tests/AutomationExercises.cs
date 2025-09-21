@@ -15,6 +15,7 @@ public class AutomationExercises : BaseTest
     // [TestCase("lichar@ukr.net", "Qwerty12345*")]
     [TestCaseSource(nameof(AddTestCaseData))]
     [Parallelizable(ParallelScope.All)] // Run data sets in parallel but sequentially for each test
+    [Category("Regression")]
     public void E2ETest(string username, string password)
     {
         var aeHomePage = new AeHomePage(GetDriver());

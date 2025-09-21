@@ -4,7 +4,7 @@ dotnet test <file-name.csproj>
 But before that, make sure you are in correct directory where the .csproj file is located. You can navigate to the directory using the cd command.
 
 2. To run tests with specific category, use the following command:
-dotnet test --filter TestCategory=<category-name>
+dotnet test <file-name.csproj> --filter TestCategory=<category-name>
 Make sure test are properly categorized using attributes in your test code.
 
 3. To run test through terminal in a specific browser, you can use following command:
