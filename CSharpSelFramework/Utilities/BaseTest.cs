@@ -86,7 +86,12 @@ public class BaseTest
                 break;
             case "Edge":
                 new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
-                _driver.Value = new EdgeDriver();
+                var edgeOptions = new EdgeOptions();
+                edgeOptions.AddArgument("headless=new"); // new headless mode
+                edgeOptions.AddArgument("disable-gpu");
+                edgeOptions.AddArgument("no-sandbox");
+                edgeOptions.AddArgument("remote-allow-origins=*");
+                _driver.Value = new EdgeDriver(edgeOptions);
                 break;
             case "Firefox":
                 new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
