@@ -1,5 +1,4 @@
 ﻿using AventStack.ExtentReports;
-using AventStack.ExtentReports.Listener.Entity;
 using AventStack.ExtentReports.Model;
 using AventStack.ExtentReports.Reporter;
 using Microsoft.Extensions.Configuration;
