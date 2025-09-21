@@ -7,6 +7,7 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using WebDriverManager.DriverConfigs.Impl;
@@ -44,15 +45,21 @@ public class BaseTest
     {
         test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
 
-        _configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory()) // важно: откуда читать файл
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .Build();
+        var browserName = TestContext.Parameters["browserName"];
 
-        var browserName = _configuration["browser"];
         if (string.IsNullOrWhiteSpace(browserName))
         {
-            throw new InvalidOperationException("Browser name is not configured in appSettings.");
+            _configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            browserName = _configuration["browser"];
+        }
+
+        if (string.IsNullOrWhiteSpace(browserName))
+        {
+            throw new InvalidOperationException("Browser name is not configured in parameters or appSettings.");
         }
 
         InitBrowser(browserName);
@@ -80,6 +87,10 @@ public class BaseTest
             case "Edge":
                 new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
                 _driver.Value = new EdgeDriver();
+                break;
+            case "Firefox":
+                new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
+                _driver.Value = new FirefoxDriver();
                 break;
         }
     }
